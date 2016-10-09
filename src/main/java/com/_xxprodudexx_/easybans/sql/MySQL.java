@@ -10,6 +10,8 @@ public class MySQL {
 
     // todo setup MySQL support
 
+    private static MySQL instance;
+
     public MySQL(String ip, String username, String password, String db) {
 
     }
@@ -17,6 +19,18 @@ public class MySQL {
 
     public void banPlayer(Player p, String reason) {
 
+    }
+
+    public void unbanPlayer(Player p){
+
+    }
+
+    public void getPlayerBanInfo(Player p){
+
+    }
+
+    public static MySQL getInstance(){
+        return instance;
     }
 
 }

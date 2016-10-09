@@ -2,7 +2,9 @@ package com._xxprodudexx_.easybans;
 
 import com._xxprodudexx_.easybans.api.BanInfo;
 import com._xxprodudexx_.easybans.api.BanManagementAPI;
+import com._xxprodudexx_.easybans.sql.MySQL;
 import com._xxprodudexx_.easybans.utils.Configuration;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.UUID;
@@ -42,9 +44,15 @@ public class EasyBans extends JavaPlugin implements BanManagementAPI {
     }
 
     public final void ban(UUID uuid, String reason) {
+        MySQL.getInstance().banPlayer(Bukkit.getPlayer(uuid), reason);
     }
 
     public final void unban(UUID uuid) {
+        MySQL.getInstance().unbanPlayer(Bukkit.getPlayer(uuid));
+    }
+
+    public final void getBanInfo(UUID uuid) {
+        MySQL.getInstance().getPlayerBanInfo(Bukkit.getPlayer(uuid));
     }
 
 

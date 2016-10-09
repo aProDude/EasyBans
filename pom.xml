@@ -29,8 +29,6 @@
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
             <version>1.10.2-R0.1-SNAPSHOT</version>
-            <type>jar</type>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.zaxxer</groupId>
@@ -41,8 +39,8 @@
 
     <repositories>
         <repository>
-            <id>Bukkit Repository</id>
-            <url>https://hub.spigotmc.org/nexus/contents/repositories/snapshots/</url>
+            <id>Bukkit Repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
     </repositories>
 

@@ -1,5 +1,5 @@
 name: EasyBans
-main: ccom._xxprodudexx_.easybans.EasyBans
+main: com._xxprodudexx_.easybans.EasyBans
 version: 1.0.0-SNAPSHOT
 author: _xXProDudeXx_
 description: A Lightweight BanManager
