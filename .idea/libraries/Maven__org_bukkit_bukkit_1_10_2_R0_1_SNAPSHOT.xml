@@ -8,6 +8,7 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/org/bukkit/Bukkit/1.10.2-R0.1-SNAPSHOT/Bukkit-1.10.2-R0.1-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/bukkit/Bukkit/1.10.2-R0.1-SNAPSHOT/Bukkit-1.10.2-R0.1-SNAPSHOT-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

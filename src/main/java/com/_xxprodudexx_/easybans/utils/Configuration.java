@@ -26,6 +26,12 @@ public class Configuration {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        save();
+    }
+
+    public static void setup(Plugin p){
+        Configuration config = new Configuration(p, "config");
+        config.createSection("Configuration");
     }
 
     public void save() {
@@ -38,6 +44,12 @@ public class Configuration {
 
     public void set(String path, String value) {
         config.set(path, value);
+        save();
+    }
+
+    public void createSection(String section){
+        config.createSection(section);
+        save();
     }
 
     public FileConfiguration getConfig() {
