@@ -1,7 +1,10 @@
 package com._xxprodudexx_.easybans.sql;
 
+import com._xxprodudexx_.easybans.EasyBans;
+import com.avaje.ebean.EbeanServer;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +18,7 @@ public class MySQL {
         if (dataSource == null) {
             try {
                 HikariConfig config = new HikariConfig();
+                config.addDataSourceProperty("Hey", "Wouter");
 
                 dataSource = new HikariDataSource(config);
             } catch (Exception e) {
@@ -44,6 +48,12 @@ public class MySQL {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void setupMySQL(){
+        EbeanServer e = EasyBans.getInstance().getDatabase();
+
+
     }
 
 

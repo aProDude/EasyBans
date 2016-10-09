@@ -3,7 +3,6 @@ package com._xxprodudexx_.easybans;
 import com._xxprodudexx_.easybans.api.BanInfo;
 import com._xxprodudexx_.easybans.api.BanManagementAPI;
 import com._xxprodudexx_.easybans.sql.MySQL;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.UUID;
@@ -41,6 +40,10 @@ public class EasyBans extends JavaPlugin implements BanManagementAPI {
     public void onDisable() {
         instance = null;
         MySQL.disableSQL();
+    }
+
+    public static EasyBans getInstance() {
+        return instance;
     }
 
     public final void ban(UUID uuid, String reason) {
