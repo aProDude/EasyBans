@@ -1,49 +1,32 @@
 package com._xxprodudexx_.easybans.api;
 
-import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 
+import java.io.File;
 import java.util.UUID;
 
 public class BanInfo {
 
-    public enum BanType {
+    private UUID playerUUID;
+    private String reason;
+    private File file;
+    private FileConfiguration config;
+    ;
 
-        BAN("Ban"), KICK("Kick"), UNBAN("Unban");
+    public BanInfo(UUID playerUUID, String reason) {
+        this.playerUUID = playerUUID;
+        this.reason = reason;
 
-        private String name;
-
-        BanType(String name) {
-            this.name = name;
-        }
-
-        public String getName() {
-            return name;
-        }
+        // todo store data in config
     }
 
-    private UUID uuid;
-    private String name;
-    private boolean isBanned;
-
-    public BanInfo(UUID uuid, BanType type) {
-        this.uuid = uuid;
-        this.name = type.getName();
+    public UUID getPlayerUUID() {
+        return playerUUID;
     }
 
-    public BanInfo(UUID uuid){
-        this.uuid = uuid;
+    public String getReason() {
+        return reason;
     }
 
-    public UUID getUniqueId() {
-        return uuid;
-    }
-
-    public String getPlayerName() {
-        return Bukkit.getPlayer(uuid).getName();
-    }
-
-    public String getName() {
-        return name;
-    }
 
 }

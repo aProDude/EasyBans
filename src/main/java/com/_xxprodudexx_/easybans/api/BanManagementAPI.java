@@ -8,5 +8,5 @@ public interface BanManagementAPI {
 
     void unban(UUID uuid);
 
-//    BanInfo getBanInfo(UUID uuid);
+    BanInfo getBanInfo(UUID uuid, String reason);
 }
