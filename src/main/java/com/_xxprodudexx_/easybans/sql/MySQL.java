@@ -4,7 +4,6 @@ import com._xxprodudexx_.easybans.EasyBans;
 import com.avaje.ebean.EbeanServer;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -50,7 +49,7 @@ public class MySQL {
         }
     }
 
-    public static void setupMySQL(){
+    public static void setupMySQL() {
         EbeanServer e = EasyBans.getInstance().getDatabase();
 
 
