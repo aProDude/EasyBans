@@ -3,7 +3,6 @@ package com._xxprodudexx_.easybans;
 import com._xxprodudexx_.easybans.api.BanInfo;
 import com._xxprodudexx_.easybans.api.BanManagementAPI;
 import com._xxprodudexx_.easybans.sql.MySQL;
-import com._xxprodudexx_.easybans.utils.Configuration;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -33,8 +32,6 @@ public class EasyBans extends JavaPlugin implements BanManagementAPI {
         if (api == null) {
             api = this;
         }
-
-        Configuration.setup(this);
 
     }
 
