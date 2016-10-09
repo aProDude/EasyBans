@@ -1,36 +1,50 @@
 package com._xxprodudexx_.easybans.sql;
 
-import org.bukkit.entity.Player;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 public class MySQL {
 
-    private Connection connection;
+    private static HikariDataSource dataSource;
 
-    // todo setup MySQL support
+    public static void enableSQL() {
 
-    private static MySQL instance;
+        if (dataSource == null) {
+            try {
+                HikariConfig config = new HikariConfig();
 
-    public MySQL(String ip, String username, String password, String db) {
-
-    }
-
-
-    public void banPlayer(Player p, String reason) {
-
-    }
-
-    public void unbanPlayer(Player p){
+                dataSource = new HikariDataSource(config);
+            } catch (Exception e) {
+                System.err.println("Could not connect to database: " + e);
+                return;
+            }
+        }
 
     }
 
-    public void getPlayerBanInfo(Player p){
-
+    public static void disableSQL() {
+        if (dataSource != null) {
+            if (!dataSource.isClosed()) {
+                dataSource.close();
+            }
+        }
     }
 
-    public static MySQL getInstance(){
-        return instance;
+    public static void executeQuery(String query) {
+        try {
+            Connection c = dataSource.getConnection();
+
+            PreparedStatement ps = c.prepareStatement(query);
+
+            ps.execute();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 
 }

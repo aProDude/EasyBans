@@ -33,23 +33,23 @@ public class EasyBans extends JavaPlugin implements BanManagementAPI {
             api = this;
         }
 
+        MySQL.enableSQL();
+
     }
 
     @Override
     public void onDisable() {
         instance = null;
+        MySQL.disableSQL();
     }
 
     public final void ban(UUID uuid, String reason) {
-        MySQL.getInstance().banPlayer(Bukkit.getPlayer(uuid), reason);
     }
 
     public final void unban(UUID uuid) {
-        MySQL.getInstance().unbanPlayer(Bukkit.getPlayer(uuid));
     }
 
     public final void getBanInfo(UUID uuid) {
-        MySQL.getInstance().getPlayerBanInfo(Bukkit.getPlayer(uuid));
     }
 
 
