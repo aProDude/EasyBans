@@ -4,3 +4,8 @@ version: 1.0.0-SNAPSHOT
 author: _xXProDudeXx_
 description: A Lightweight BanManager
 
+commands:
+      ban:
+      baninfo:
+      unban:
+      kick:

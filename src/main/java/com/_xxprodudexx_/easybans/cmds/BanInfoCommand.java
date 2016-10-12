@@ -11,13 +11,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class UnbanCommand implements CommandExecutor {
+public class BanInfoCommand implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         String permission = "easybans.commands." + command.getName().toLowerCase();
 
-        if (command.getName().equalsIgnoreCase("unban")) {
+        if (command.getName().equalsIgnoreCase("baninfo")) {
             if (!Validate.isPlayer(sender)) {
                 MessageManager.getManager().severeMessage(sender, MessageManager.MessageType.NOPLAYER);
                 return true;
@@ -25,7 +25,7 @@ public class UnbanCommand implements CommandExecutor {
                 if (Validate.hasPermission(sender, permission)) {
 
                     if (args.length == 0) {
-                        MessageManager.getManager().message(sender, ChatColor.RED, "Usage: /unban <player>");
+                        MessageManager.getManager().message(sender, ChatColor.RED, "Usage: /baninfo <player>");
                         return true;
                     }
 
@@ -39,19 +39,20 @@ public class UnbanCommand implements CommandExecutor {
                             MessageManager.getManager().severeMessage(sender, MessageManager.MessageType.NOTBANNED);
                             return true;
                         } else {
-                            MessageManager.getManager().message(sender, ChatColor.GREEN, "Executing unban...");
-                            MessageManager.getManager().message(sender, ChatColor.GREEN, "Player " + op.getName() + " has been unbanned.");
-                            EasyBans.getAPI().unban(op.getUniqueId());
+                            String banInfo = EasyBans.getAPI().getBanInfo(op.getUniqueId());
+                            sender.sendMessage(MessageManager.getPrefix() + banInfo);
+                            return true;
                         }
                     }
+
 
                 } else {
                     MessageManager.getManager().severeMessage(sender, MessageManager.MessageType.NOPERMISSION);
                     return true;
                 }
             }
-
         }
+
 
         return true;
     }
