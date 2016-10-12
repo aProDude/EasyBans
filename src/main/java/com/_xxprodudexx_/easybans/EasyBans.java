@@ -6,12 +6,9 @@ import com._xxprodudexx_.easybans.cmds.BanCommand;
 import com._xxprodudexx_.easybans.cmds.BanInfoCommand;
 import com._xxprodudexx_.easybans.cmds.KickCommand;
 import com._xxprodudexx_.easybans.cmds.UnbanCommand;
-import com._xxprodudexx_.easybans.events.PlayerLogin;
 import com._xxprodudexx_.easybans.utils.BanMetrics;
 import com._xxprodudexx_.easybans.utils.ListenerManager;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.Timestamp;
@@ -21,15 +18,6 @@ public class EasyBans extends JavaPlugin implements BanManagementAPI {
 
     private static EasyBans instance;
     private static BanManagementAPI api;
-
-    /*
-    Todo: Report, Warn, StaffChat en testen!
-    Todo: Testen!
-    Todo: Pushen naar GitHub!
-    Todo: PlayerLoginEvents, StaffChat en testen!
-    Todo: README.md afmaken (Zie GitHub)
-    Todo: Finished? Upload naar Spigiot
-     */
 
     @Override
     public void onEnable() {
@@ -62,6 +50,10 @@ public class EasyBans extends JavaPlugin implements BanManagementAPI {
 
     public final void unban(UUID uuid) {
         BanMetrics.unban(uuid);
+    }
+
+    public final void report(UUID uuid, Timestamp timestamp, String reason) {
+        //Todo Report (Metrics, Commands)
     }
 
     public final String getBanInfo(UUID uuid) {

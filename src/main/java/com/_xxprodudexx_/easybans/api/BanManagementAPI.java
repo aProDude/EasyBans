@@ -14,5 +14,7 @@ public interface BanManagementAPI {
 
     void unban(UUID uuid);
 
+    void report(UUID uuid, Timestamp timestamp, String reason);
+
     String getBanInfo(UUID uuid);
 }
