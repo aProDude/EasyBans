@@ -9,3 +9,31 @@ commands:
       baninfo:
       unban:
       kick:
+      report:
+
+permissions:
+      easybans.commands.*:
+         description:
+         children:
+           easybans.commands.ban: true
+           easybans.commands.baninfo: true
+           easybans.commands.unban: true
+           easybans.commands.kick: true
+           easybans.commands.report: true
+         default: op
+
+      easybans.commands.ban:
+         description: Ban players
+         default: op
+      easybans.commands.baninfo:
+          description: Check the banstatus of players
+          default: op
+      easybans.commands.unban:
+          description: Unban players
+          default: op
+      easybans.commands.kick:
+          description: Kick players
+          default: op
+      easybans.commands.report:
+          description: report players
+          default: op

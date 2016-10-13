@@ -28,7 +28,7 @@ public class MessageManager {
 
         MessageType(ChatColor color, String message) {
             this.color = color;
-            this.message = prefix + message;
+            this.message = prefix + color + message;
         }
 
         public ChatColor getColor() {

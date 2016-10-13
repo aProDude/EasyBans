@@ -2,12 +2,10 @@ package com._xxprodudexx_.easybans;
 
 import com._xxprodudexx_.easybans.api.BanManagementAPI;
 import com._xxprodudexx_.easybans.api.BanType;
-import com._xxprodudexx_.easybans.cmds.BanCommand;
-import com._xxprodudexx_.easybans.cmds.BanInfoCommand;
-import com._xxprodudexx_.easybans.cmds.KickCommand;
-import com._xxprodudexx_.easybans.cmds.UnbanCommand;
+import com._xxprodudexx_.easybans.cmds.*;
 import com._xxprodudexx_.easybans.utils.BanMetrics;
 import com._xxprodudexx_.easybans.utils.ListenerManager;
+import com._xxprodudexx_.easybans.utils.ReportMetrics;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -19,6 +17,10 @@ public class EasyBans extends JavaPlugin implements BanManagementAPI {
     private static EasyBans instance;
     private static BanManagementAPI api;
 
+    /*
+    Todo: Fix error with report-ID
+     */
+
     @Override
     public void onEnable() {
         instance = this;
@@ -27,6 +29,7 @@ public class EasyBans extends JavaPlugin implements BanManagementAPI {
             api = this;
         }
         BanMetrics.setupBanConfiguration(this);
+        ReportMetrics.setupConfiguration(this);
         ListenerManager.registerListeners(this);
         registerCommands();
     }
@@ -52,8 +55,8 @@ public class EasyBans extends JavaPlugin implements BanManagementAPI {
         BanMetrics.unban(uuid);
     }
 
-    public final void report(UUID uuid, Timestamp timestamp, String reason) {
-        //Todo Report (Metrics, Commands)
+    public final void report(UUID uuid, Player reporter, Timestamp timestamp, String reason) {
+        ReportMetrics.report(uuid, reporter, timestamp, reason);
     }
 
     public final String getBanInfo(UUID uuid) {
@@ -70,6 +73,7 @@ public class EasyBans extends JavaPlugin implements BanManagementAPI {
         getCommand("baninfo").setExecutor(new BanInfoCommand());
         getCommand("unban").setExecutor(new UnbanCommand());
         getCommand("kick").setExecutor(new KickCommand());
+        getCommand("report").setExecutor(new ReportCommand());
     }
 
 }
