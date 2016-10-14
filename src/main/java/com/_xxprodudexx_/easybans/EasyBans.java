@@ -2,10 +2,14 @@ package com._xxprodudexx_.easybans;
 
 import com._xxprodudexx_.easybans.api.BanManagementAPI;
 import com._xxprodudexx_.easybans.api.BanType;
-import com._xxprodudexx_.easybans.cmds.*;
+import com._xxprodudexx_.easybans.cmds.BanCommand;
+import com._xxprodudexx_.easybans.cmds.BanInfoCommand;
+import com._xxprodudexx_.easybans.cmds.KickCommand;
+import com._xxprodudexx_.easybans.cmds.UnbanCommand;
+import com._xxprodudexx_.easybans.sql.MySQL;
+import com._xxprodudexx_.easybans.sql.SQLMetrics;
 import com._xxprodudexx_.easybans.utils.BanMetrics;
 import com._xxprodudexx_.easybans.utils.ListenerManager;
-import com._xxprodudexx_.easybans.utils.ReportMetrics;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -29,7 +33,9 @@ public class EasyBans extends JavaPlugin implements BanManagementAPI {
             api = this;
         }
         BanMetrics.setupBanConfiguration(this);
-        ReportMetrics.setupConfiguration(this);
+        SQLMetrics.setupSQLMetrics(this);
+        //MySQL.setupSQL(null, null, null, null);
+        //todo enter values from configuration
         ListenerManager.registerListeners(this);
         registerCommands();
     }
@@ -51,12 +57,12 @@ public class EasyBans extends JavaPlugin implements BanManagementAPI {
         BanMetrics.ban(uuid, timestamp, reason);
     }
 
-    public final void unban(UUID uuid) {
-        BanMetrics.unban(uuid);
+    public final void sqlBan(Player p, Timestamp timestamp, String reason) {
+        MySQL.ban(p, timestamp, reason);
     }
 
-    public final void report(UUID uuid, Player reporter, Timestamp timestamp, String reason) {
-        ReportMetrics.report(uuid, reporter, timestamp, reason);
+    public final void unban(UUID uuid) {
+        BanMetrics.unban(uuid);
     }
 
     public final String getBanInfo(UUID uuid) {
@@ -73,7 +79,6 @@ public class EasyBans extends JavaPlugin implements BanManagementAPI {
         getCommand("baninfo").setExecutor(new BanInfoCommand());
         getCommand("unban").setExecutor(new UnbanCommand());
         getCommand("kick").setExecutor(new KickCommand());
-        getCommand("report").setExecutor(new ReportCommand());
     }
 
 }

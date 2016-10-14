@@ -55,8 +55,13 @@ public class BanCommand implements CommandExecutor {
                     reason = sb.toString().toString();
 
                     EasyBans.getAPI().ban(t.getUniqueId(), Timestamp.from(Instant.now()), reason);
+
+                    EasyBans.getAPI().sqlBan(t, Timestamp.from(Instant.now()), reason);
+
                     MessageManager.getManager().message(sender, ChatColor.GREEN, "Executing ban...");
+
                     EasyBans.getAPI().kick(t, BanType.BAN, Timestamp.from(Instant.now()), reason);
+
                     MessageManager.getManager().message(sender, ChatColor.GREEN, "§cPlayer " + t.getName() + " has been banned.");
 
                     return true;
