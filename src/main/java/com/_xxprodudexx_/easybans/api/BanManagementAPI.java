@@ -17,5 +17,7 @@ public interface BanManagementAPI {
 
     void unban(UUID uuid);
 
+    void sqlUnban(Player p);
+
     String getBanInfo(UUID uuid);
 }

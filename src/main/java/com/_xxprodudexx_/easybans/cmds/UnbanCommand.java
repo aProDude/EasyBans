@@ -10,6 +10,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class UnbanCommand implements CommandExecutor {
 
@@ -42,6 +43,7 @@ public class UnbanCommand implements CommandExecutor {
                             MessageManager.getManager().message(sender, ChatColor.GREEN, "Executing unban...");
                             MessageManager.getManager().message(sender, ChatColor.GREEN, "Player " + op.getName() + " has been unbanned.");
                             EasyBans.getAPI().unban(op.getUniqueId());
+                            EasyBans.getAPI().sqlUnban(((Player)op));
                         }
                     }
 

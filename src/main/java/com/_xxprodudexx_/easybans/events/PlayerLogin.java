@@ -2,6 +2,7 @@ package com._xxprodudexx_.easybans.events;
 
 import com._xxprodudexx_.easybans.EasyBans;
 import com._xxprodudexx_.easybans.api.BanType;
+import com._xxprodudexx_.easybans.sql.MySQL;
 import com._xxprodudexx_.easybans.utils.BanMetrics;
 import com._xxprodudexx_.easybans.utils.MessageManager;
 import org.bukkit.event.EventHandler;

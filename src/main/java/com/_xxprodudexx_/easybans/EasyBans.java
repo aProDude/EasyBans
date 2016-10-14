@@ -10,6 +10,7 @@ import com._xxprodudexx_.easybans.sql.MySQL;
 import com._xxprodudexx_.easybans.sql.SQLMetrics;
 import com._xxprodudexx_.easybans.utils.BanMetrics;
 import com._xxprodudexx_.easybans.utils.ListenerManager;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -34,8 +35,7 @@ public class EasyBans extends JavaPlugin implements BanManagementAPI {
         }
         BanMetrics.setupBanConfiguration(this);
         SQLMetrics.setupSQLMetrics(this);
-        //MySQL.setupSQL(null, null, null, null);
-        //todo enter values from configuration
+        setupMySQL();
         ListenerManager.registerListeners(this);
         registerCommands();
     }
@@ -65,6 +65,10 @@ public class EasyBans extends JavaPlugin implements BanManagementAPI {
         BanMetrics.unban(uuid);
     }
 
+    public final void sqlUnban(Player p) {
+        MySQL.unban(p);
+    }
+
     public final String getBanInfo(UUID uuid) {
         String banInfo = BanMetrics.getBanInfo(uuid);
         return banInfo;
@@ -79,6 +83,15 @@ public class EasyBans extends JavaPlugin implements BanManagementAPI {
         getCommand("baninfo").setExecutor(new BanInfoCommand());
         getCommand("unban").setExecutor(new UnbanCommand());
         getCommand("kick").setExecutor(new KickCommand());
+    }
+
+    public void setupMySQL() {
+        FileConfiguration c = SQLMetrics.getConfig();
+        String ip = c.getString("MySQL-Data.IP");
+        String username = c.getString("MySQL-Data.Username");
+        String password = c.getString("MySQL-Data.Password");
+        String database = c.getString("MySQL-Data.Database");
+        MySQL.setupSQL(ip, database, password, username);
     }
 
 }
