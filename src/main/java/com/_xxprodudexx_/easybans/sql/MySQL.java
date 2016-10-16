@@ -1,5 +1,7 @@
 package com._xxprodudexx_.easybans.sql;
 
+import com._xxprodudexx_.easybans.api.BanType;
+import com._xxprodudexx_.easybans.utils.MessageManager;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
@@ -86,6 +88,18 @@ public class MySQL {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static String kick(Player target, BanType type, Timestamp date, String reason) {
+        String finalReason =
+                MessageManager.getPrefix() + "§cYou have been punished!" +
+                        "\n\n§cPunishment Type: §7" + type.getName() +
+                        "\n§cDate: §7" + date.toString() +
+                        "\n§cReason: §7" + reason +
+                        "\n§cExpires in: §7" + type.getExpires() +
+                        "\n\n" + MessageManager.getPrefix() + "§cPlease follow our rules!";
+        target.kickPlayer(finalReason);
+        return finalReason;
     }
 
 
