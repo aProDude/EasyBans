@@ -1,9 +1,8 @@
 package com._xxprodudexx_.easybans.api;
 
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.UUID;
 
@@ -13,11 +12,13 @@ public interface BanManagementAPI {
 
     void ban(UUID uuid, Timestamp timestamp, String reason);
 
-    void sqlBan(Player p, Timestamp timestamp, String reason);
+    void sqlBan(Player p, OfflinePlayer op, Timestamp timestamp, String reason);
 
     void unban(UUID uuid);
 
-    void sqlUnban(Player p);
+    void sqlUnban(OfflinePlayer p);
 
     String getBanInfo(UUID uuid);
+
+    String getSqlBanInfo(OfflinePlayer p);
 }

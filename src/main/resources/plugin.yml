@@ -10,6 +10,9 @@ commands:
       unban:
       kick:
       report:
+      sqlbaninfo:
+      sqlunban:
+      sqlban:
 
 permissions:
       easybans.commands.*:
@@ -20,6 +23,7 @@ permissions:
            easybans.commands.unban: true
            easybans.commands.kick: true
            easybans.commands.report: true
+           easybans.commands.sqlbaninfo: true
          default: op
 
       easybans.commands.ban:
@@ -36,4 +40,7 @@ permissions:
           default: op
       easybans.commands.report:
           description: report players
+          default: op
+      easybans.commands.sqlbaninfo:
+          description: Check the MySQL baninfo
           default: op
