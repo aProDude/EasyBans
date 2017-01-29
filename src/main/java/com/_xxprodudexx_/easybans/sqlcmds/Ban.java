@@ -1,6 +1,7 @@
 package com._xxprodudexx_.easybans.sqlcmds;
 
 import com._xxprodudexx_.easybans.EasyBans;
+import com._xxprodudexx_.easybans.api.BanType;
 import com._xxprodudexx_.easybans.utils.MessageManager;
 import com._xxprodudexx_.easybans.utils.Validate;
 import com.avaje.ebeaninternal.server.cluster.mcast.MessageAck;
@@ -58,6 +59,7 @@ public class Ban implements CommandExecutor {
                             return true;
                         }
                         EasyBans.getAPI().sqlBan(t, null, Timestamp.from(Instant.now()), reason);
+                        EasyBans.getAPI().sqlKick(t, BanType.BAN, Timestamp.from(Instant.now()), reason);
                         MessageManager.getManager().message(sender, ChatColor.GREEN, "Player " + t.getName() + " has been banned!");
                         return true;
                     }

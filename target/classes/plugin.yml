@@ -1,0 +1,35 @@
+name: EasyBans
+main: com._xxprodudexx_.easybans.EasyBans
+version: 1.0.0-SNAPSHOT
+author: _xXProDudeXx_
+description: A Lightweight BanManager
+
+commands:
+      sqlkick:
+      sqlban:
+      sqlunban:
+      sqlbaninfo:
+
+permissions:
+      easybans.commands.*:
+         description: All Commands for EasyBans
+         children:
+           easybans.commands.sqlkick: true
+           easybans.commands.sqlban: true
+           easybans.commands.sqlunban: true
+           easybans.commands.sqlbaninfo: true
+         default: op
+
+
+      easybans.commands.sqlkick:
+          description: Kick a player
+          default: op
+      easybans.commands.sqlban:
+          description: Ban a player
+          default: op
+      easybans.commands.sqlunban:
+          description: Unban a player
+          default: op
+      easybans.commands.sqlbaninfo:
+           description: Check the MySQL baninfo
+           default: op
